@@ -151,8 +151,8 @@ c = Int(floor(3.1)) # 整数の3となる
 using Printf
 
 function average(a, b)
-	c = (a + b)/2
-	return c
+  c = (a + b)/2
+  return c
 end
 
 x = 2
@@ -168,9 +168,9 @@ z = average(x,y)
 using Printf
 
 function tasizan_hikizan(a, b)
-	c = a+b
+  c = a+b
   d = a-b
-	return c, d
+  return c, d
 end
 
 x = 2
@@ -335,18 +335,18 @@ d3 = Dict{Int64, Dict{Int64, Float64}}()
 x = 10
 
 if x > 1
-	println("x > 1") # 条件が満たされるのでこの文が実行される 
+  println("x > 1") # 条件が満たされるのでこの文が実行される 
 end
 
 if x > 10
-	println("x > 10") # 条件が満たされないので、ここの部分は実行されない
+  println("x > 10") # 条件が満たされないので、ここの部分は実行されない
 else
-	println("x <= 10") # if文の条件がfalseなので、こちらが実行される。
+  println("x <= 10") # if文の条件がfalseなので、こちらが実行される。
 end
 
 y = 20
 if (x > 1 && y > 10)   # 条件式を2つ指定することも可能で、&& はどちらもtrueの場合だけtrueとなります。
-	println("x > 1 && y > 10 is true")
+  println("x > 1 && y > 10 is true")
 end
 
 if (x > 1 || y < 10)   # どちらか(もしくは両方)がtrueの場合に実行したい場合は||を使用します　
@@ -365,9 +365,9 @@ sum = 0
 a   = Array{Int64, 1}() 
 a2  = zeros(Int64, 10)
 for i=1:10
-	global sum += i # globalが必要ですが、これは後のスコープで説明します。 
-	push!(a, i)     # 各iを配列に加えていきます。
- 	a2[i] = 2*i       # あらかじめ用意した配列の要素にも代入できます。
+  global sum += i # globalが必要ですが、これは後のスコープで説明します。 
+  push!(a, i)     # 各iを配列に加えていきます。
+  a2[i] = 2*i     # あらかじめ用意した配列の要素にも代入できます。
 end
 
 println("sum:", sum)
@@ -376,13 +376,13 @@ println("a2:", a2)
 
 # 配列の各要素についてのループ
 for aa in a2      # ここでは、a2に格納された10この数字が順番にaaへと代入されます。
-	println(aa)
+  println(aa)
 end
 
 # 文字列の配列についても可能です
 mr = ["sasaki", "ojima", "taneichi", "nishino", "mercedes", "mori"]
 for sp in mr
-	println(sp)
+  println(sp)
 end
 
 ```
@@ -393,10 +393,10 @@ for文を途中で抜け出したい場合などは、break文を使用します
 
 ```julia
 for i=1:100
-	println(i)
-	if(i == 10) # if文は次の章で説明します。...
-		break     # ここでループを抜ける
-	end
+  println(i)
+  if(i == 10) # if文は次の章で説明します。...
+    break     # ここでループを抜ける
+  end
 end
 ```
 
@@ -406,13 +406,13 @@ end
 
 i   = 0
 while i<10 # i<10が条件式なので、iが9まで処理が繰り返されます。
-	println(i)
-	global i+=1
+  println(i)
+  global i+=1
 end
 
 i = 100
 while i<10 # この場合は、whileの最初から条件式が否なので、while文の中の処理は一度も実行されません。
-	println("!!!!!!!")
+  println("!!!!!!!")
 end
 ```
 
@@ -425,7 +425,7 @@ juliaの機能の一つに変数のスコープ(有効範囲)があります。�
 ```julia
 x = 1  
 for i=1:10
-	x = 10
+  x = 10
 end
 println(x)
 ```
@@ -437,8 +437,8 @@ println(x)
 ```julia
 x = 1   # global 変数
 for i=1:10
-	x = 10 # これはlocal変数のx
-	global x = 20 # 変数の前にglobalをつけるとglobal変数について計算できます
+  x = 10 # これはlocal変数のx
+  global x = 20 # 変数の前にglobalをつけるとglobal変数について計算できます
 end
 println(x)
 ```
@@ -449,7 +449,7 @@ println(x)
 
 ```julia
 for i=1:10
-	y = 30    # local 変数
+  y = 30    # local 変数
 end
 println(y)  # これは使用できない...
 ```
@@ -460,13 +460,13 @@ println(y)  # これは使用できない...
 
 ```julia
 function test1()
-	x = 1             # function test1の local 変数として定義  
-	for i=1:10
-		x = 10　　　     # for 文内部で新たにlocal変数として認識されることなく、これもfunction test1のlocal変数
-		global y = 20   # global属性がついていないと、function test1では宣言されていないので、for文のlocal変数として定義されてしまう。このため、エラーが出力される
-	end
-	println(x)
-	println(y)
+  x = 1             # function test1の local 変数として定義  
+  for i=1:10
+    x = 10　　　     # for 文内部で新たにlocal変数として認識されることなく、これもfunction test1のlocal変数
+    global y = 20   # global属性がついていないと、function test1では宣言されていないので、for文のlocal変数として定義されてしまう。このため、エラーが出力される
+  end
+  println(x)
+  println(y)
 end
 test1()
 println(y)          # global属性なので、関数の外側でも使用可能
@@ -481,13 +481,13 @@ println(y)          # global属性なので、関数の外側でも使用可能
 ```julia
 x = zeros(Int64, 10)
 for i=1:10
-    x[i] = i   # これはglobal変数
+  x[i] = i   # これはglobal変数
 end
 println(x)
 
 for i=1:10
-	　x 　　= zeros(Int64, 10)  # ここでlocal変数を宣言
-    x[i] = 33                # ここもlocal変数
+  x 　　= zeros(Int64, 10)  # ここでlocal変数を宣言
+  x[i] = 33                # ここもlocal変数
 end
 println(x)                   # 上のループの変更は反映されない
 ```
@@ -516,7 +516,7 @@ f = open("./data.dat", "w")
 
 # ファイルへの書き込み
 for (i, n) in enumerate(ns) # enumerateは配列の要素順に、i=1,2,3..., n=ns[1], ns[2], ns[3], ...と代入してくれる関数です。
-	@printf(f, "%d %e %e \n", i, n, sin_s[i])
+  @printf(f, "%d %e %e \n", i, n, sin_s[i])
 end
 
 close(f) # closeでファイルの書き込み終わり
@@ -531,15 +531,15 @@ using Printf
 
 # 各行ごとに読み込み(linesに文字列配列として格納)　
 lines = open("./data.dat", "r") do fp
-	readlines(fp)
+  readlines(fp)
 end
 
 for line in lines
-	d = parse.(Float64, split(line)) # splitで空白ごとに、配列として分割 例えば, "ibaraki tsukuba" => ["ibaraki", "tsukuba"], parse.で一括で実数に変換
-	i     = Int(d[1])  # 配列のindex
-	theta = d[2]*pi    # theta
-	sin   = d[3]	     # sin theta
-	@printf("%d %e %e \n", i, theta, sin)
+  d = parse.(Float64, split(line)) # splitで空白ごとに、配列として分割 例えば, "ibaraki tsukuba" => ["ibaraki", "tsukuba"], parse.で一括で実数に変換
+  i     = Int(d[1])  # 配列のindex
+  theta = d[2]*pi    # theta
+  sin   = d[3]	     # sin theta
+  @printf("%d %e %e \n", i, theta, sin)
 end                                 
 																	 
 ```
@@ -553,19 +553,19 @@ using PyPlot
 
 # 各行ごとに読み込み(linesに文字列配列として格納)　
 lines = open("./data.dat", "r") do fp
-	readlines(fp)
+  readlines(fp)
 end
 
 thetas = Array{Float64, 1}()
 sins   = Array{Float64, 1}()
 for line in lines
-	d = parse.(Float64, split(line)) # splitで空白ごとに、配列として分割 例えば, "ibaraki tsukuba" => ["ibaraki", "tsukuba"], parse.で一括で実数に変換
-	i     = Int(d[1])  # 配列のindex
-	theta = d[2]*pi    # theta
-	sin   = d[3]	     # sin theta
+  d = parse.(Float64, split(line)) # splitで空白ごとに、配列として分割 例えば, "ibaraki tsukuba" => ["ibaraki", "tsukuba"], parse.で一括で実数に変換
+  i     = Int(d[1])  # 配列のindex
+  theta = d[2]*pi    # theta
+  sin   = d[3]	     # sin theta
 
-	push!(thetas, theta)
-	push!(sins, sin)
+  push!(thetas, theta)
+  push!(sins, sin)
 end                                 
 						
 figure()
@@ -589,13 +589,13 @@ thetas = Array{Float64, 1}()
 sins   = Array{Float64, 1}()
 coss   = Array{Float64, 1}()
 for line in lines
-	d = parse.(Float64, split(line)) # splitで空白ごとに、配列として分割 例えば, "ibaraki tsukuba" => ["ibaraki", "tsukuba"], parse.で一括で実数に変換
-	i     = Int(d[1])  # 配列のindex
-	theta = d[2]*pi    # theta
-	sin   = d[3]	     # sin theta
+  d = parse.(Float64, split(line)) # splitで空白ごとに、配列として分割 例えば, "ibaraki tsukuba" => ["ibaraki", "tsukuba"], parse.で一括で実数に変換
+  i     = Int(d[1])  # 配列のindex
+  theta = d[2]*pi    # theta
+  sin   = d[3]	     # sin theta
 
-	push!(thetas, theta)
-	push!(sins, sin)
+  push!(thetas, theta)
+  push!(sins, sin)
   push!(coss, cos(theta))
 end                                 
 						
