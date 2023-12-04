@@ -1,6 +1,8 @@
 using PyPlot
 
 filename = "data_10.dat"
+savefile = "./test.png"
+
 
 lines = open(filename, "r") do fp
 	readlines(fp)
@@ -16,4 +18,6 @@ end
 
 figure(figsize=(8,6))
 plot(d1, d2, "-")
+savefig(savefile)
 show()
+close()
